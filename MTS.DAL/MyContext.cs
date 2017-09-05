@@ -12,7 +12,6 @@ namespace MTS.DAL
 {
    public class MyContext: IdentityDbContext<ApplicationUser>
     {
-
         public MyContext()
             : base("name=MyCon")
         {        }
