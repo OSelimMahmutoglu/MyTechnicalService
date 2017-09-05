@@ -14,6 +14,8 @@ namespace MTS.Models.Entities
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "Adres")]
+
         public string Adres { get; set; }
         public string KullaniciId { get; set; }
         public int KategoriId { get; set; }
@@ -24,6 +26,7 @@ namespace MTS.Models.Entities
         public byte Puan  { get; set; }
         [Display(Name = "Arıza Kayıt Zamanı")]
         public DateTime ArizaKayitZamani { get; set; } = DateTime.Now;
+        [Display(Name = "Arıza Giderildi Mi")]
         public bool ArizaGiderildiMi { get; set; }
 
         [ForeignKey("KullaniciId")]
