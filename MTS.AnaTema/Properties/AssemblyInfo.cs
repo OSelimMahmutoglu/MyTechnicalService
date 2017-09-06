@@ -2,34 +2,34 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("MTS.AnaTema")]
+// Informacje ogólne o zestawie zależą od poniższego
+// zestawu atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
+// związane z zestawem.
+[assembly: AssemblyTitle("Inspinia_MVC5")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MTS.AnaTema")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("Inspinia_MVC5")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
+// Ustawienie dla atrybutu ComVisible wartości false powoduje, że typy w tym zestawie stają się niewidoczne
+// dla składników COM. Jeśli musisz uzyskiwać dostęp do typu w tym zestawie
+// z modelu COM, ustaw dla atrybutu ComVisible tego typu wartość true.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("26cb39c1-e406-4722-af12-c817b9f13e94")]
+// Poniższy identyfikator GUID odpowiada atrybutowi ID biblioteki typów typelib, jeśli ten projekt jest uwidaczniany w modelu COM
+[assembly: Guid("0869213c-15bd-4ee9-820e-b8ca69fdf067")]
 
-// Version information for an assembly consists of the following four values:
+// Informacje o wersji zestawu obejmują następujące cztery wartości:
 //
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
+//      Wersja główna
+//      Wersja pomocnicza
+//      Numer kompilacji
+//      Poprawka
 //
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
+// Możesz określić wszystkie te wartości lub użyć wartości domyślnych numerów kompilacji i poprawki,
+// stosując znak „*”, jak pokazano poniżej:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
