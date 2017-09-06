@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\mainbackground.png" />
     <Content Include="packages.config" />
     <Content Include=".DS_Store" />
     <Content Include="css\.DS_Store" />

@@ -23,7 +23,7 @@ namespace MTS.Models.Entities
         public string Aciklama { get; set; }
         public string FotografYolu { get; set; }
         public string Konum { get; set; }
-        public byte Puan  { get; set; }
+        public byte? Puan  { get; set; }
         [Display(Name = "Arıza Kayıt Zamanı")]
         public DateTime ArizaKayitZamani { get; set; } = DateTime.Now;
         [Display(Name = "Arıza Giderildi Mi")]

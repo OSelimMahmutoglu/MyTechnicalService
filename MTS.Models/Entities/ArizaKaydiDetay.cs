@@ -25,7 +25,7 @@ namespace MTS.Models.Entities
         public string TeknisyenId { get; set; }
         [Display(Name = "Teknisyen Raporu")]
         public string TeknisyenRaporu { get; set; }
-        public decimal Fiyat { get; set; }
+        public decimal? Fiyat { get; set; } 
         [Display(Name = "Bitiş Zamanı")]
         public DateTime BitisZamani { get; set; }
 
