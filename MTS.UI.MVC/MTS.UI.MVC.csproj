@@ -2439,6 +2439,8 @@
     </Content>
     <Content Include="Views\Hesap\Giris.cshtml" />
     <Content Include="Views\Hesap\Kayit.cshtml" />
+    <Content Include="Views\Hesap\SifremiUnuttum.cshtml" />
+    <Content Include="Views\Hesap\Profilim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
