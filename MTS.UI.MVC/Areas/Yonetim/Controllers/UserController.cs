@@ -8,14 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 using static MTS.BLL.Account.MemberShipTools;
+using System.Web.Mvc;
 
-namespace MTS.UI.MVC.Controllers
+
+namespace MTS.UI.MVC.Areas.Yonetim.Controllers
 {
-    public class HesapController : Controller
+    public class UserController : Controller
     {
-        // GET: Hesap
+        // GET: Yonetim/User
+        public ActionResult Index()
+        {
+            return View();
+        }
         public ActionResult Kayit()
         {
             return View();
@@ -81,7 +86,6 @@ namespace MTS.UI.MVC.Controllers
                 return View(model);
             }
         }
-
         public ActionResult Giris()
         {
             return View();
@@ -113,36 +117,58 @@ namespace MTS.UI.MVC.Controllers
                 else
                 {
                     //emaile göre giriş yaptı
-                    var authManager = HttpContext.GetOwinContext().Authentication;
-                    var userIdentity =
-                        userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-
-                    authManager.SignIn(new AuthenticationProperties()
-                    {
-                        IsPersistent = model.RememberMe
-                    }, userIdentity);
+                    login(user);
                 }
             }
             else
             {
                 // kullanıcı adına göre giriş yaptı
+                login(user);
+            }
+
+            void login(ApplicationUser loginuser)
+            {
                 var authManager = HttpContext.GetOwinContext().Authentication;
                 var userIdentity =
-                    userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    userManager.CreateIdentity(loginuser, DefaultAuthenticationTypes.ApplicationCookie);
 
                 authManager.SignIn(new AuthenticationProperties()
                 {
                     IsPersistent = model.RememberMe
                 }, userIdentity);
             }
-            return RedirectToAction("Index", "Ana");
+            return RedirectToAction("Index", "Main");
         }
 
-        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> SifremiUnuttum(string name)
+        {
+            var userStore = NewUserStore();
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            var user = userManager.FindByName(name);
+            var user2 = userManager.FindByEmail(name);
+            if (user == null && user2 == null)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı Bulunamadı");
+                return View();
+            }
+            var kullanici = user != null ? user : user2;
+            string parola = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
+            await userStore.SetPasswordHashAsync(kullanici, userManager.PasswordHasher.HashPassword(parola));
+            await userStore.UpdateAsync(kullanici);
+            await userStore.Context.SaveChangesAsync();
+            await SiteSettings.SendMail(new MailModel
+            {
+                To = kullanici.Email,
+                Subject = "Yeni parolanız",
+                Message = $"Merhaba {kullanici.UserName},<br/>Yeni parolanız: <b>{parola}</b><br/><a href='{SiteUrl()}/hesap/giris'>Giriş Yap</a>"
+            });
+            return RedirectToAction("Index", "Main");
+        }
         public ActionResult Cikis()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
-            return RedirectToAction("Index", "Ana");
+            return RedirectToAction("Index", "Main");
         }
         [Authorize]
         public async Task<ActionResult> Profilim()
@@ -182,95 +208,6 @@ namespace MTS.UI.MVC.Controllers
             return RedirectToAction("Profilim");
         }
 
-        [Authorize]
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public async Task<ActionResult> SifreGuncelle(ProfileViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View("Profilim", model);
-            var userStore = NewUserStore();
-            var userManager = new UserManager<ApplicationUser>(userStore);
-            var user = userManager.FindById(HttpContext.User.Identity.GetUserId());
-
-            var checkUser = userManager.Find(user.UserName, model.OldPassword);
-            if (checkUser == null)
-            {
-                ModelState.AddModelError(string.Empty, "Mevcut şifreniz yanlış");
-                return View("Profilim", model);
-            }
-            await userStore.SetPasswordHashAsync(user, userManager.PasswordHasher.HashPassword(model.ConfirmPassword));
-            await userStore.UpdateAsync(user);
-            await userStore.Context.SaveChangesAsync();
-
-            return RedirectToAction("Cikis");
-        }
-        public async Task<ActionResult> Aktivasyon(string code)
-        {
-            var userStore = NewUserStore();
-            var sonuc = userStore.Context.Set<ApplicationUser>().Where(x => x.ActivationCode == code).FirstOrDefault();
-            if (sonuc == null)
-            {
-                ViewBag.sonuc = "Aktivasyon başarısız";
-                return View();
-            }
-            sonuc.EmailConfirmed = true;
-            await userStore.UpdateAsync(sonuc);
-            await userStore.Context.SaveChangesAsync();
-            ViewBag.sonuc = "Aktivasyon başarılı";
-            await SiteSettings.SendMail(new MailModel()
-            {
-                To = sonuc.Email,
-                Subject = "Aktivasyon başarılı",
-                Message = $"Merhaba {sonuc.UserName}, Aktivasyon işleminiz başarılı :)"
-            });
-            HttpContext.GetOwinContext().Authentication.SignOut();
-            return View();
-        }
-        [Authorize]
-        public async Task<ActionResult> TekrarAktivasyonGonder()
-        {
-            var userStore = NewUserStore();
-            var userManager = new UserManager<ApplicationUser>(userStore);
-            var user = userManager.FindById(HttpContext.User.Identity.GetUserId());
-            await SiteSettings.SendMail(new MailModel()
-            {
-                To = user.Email,
-                Subject = "Aktivasyon Kodu",
-                Message = $"Merhaba {user.UserName}, <br/>Hesabınızı aktifleştirmek için <a href='{SiteUrl()}/hesap/aktivasyon?code={user.ActivationCode}'>Aktivasyon Kodu</a>"
-            });
-
-            return RedirectToAction("Profilim");
-        }
-        public ActionResult SifremiUnuttum()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<ActionResult> SifremiUnuttum(string name)
-        {
-            var userStore = NewUserStore();
-            var userManager = new UserManager<ApplicationUser>(userStore);
-            var user = userManager.FindByName(name);
-            var user2 = userManager.FindByEmail(name);
-            if (user == null && user2 == null)
-            {
-                ModelState.AddModelError(string.Empty, "Kullanıcı Bulunamadı");
-                return View();
-            }
-            var kullanici = user != null ? user : user2;
-            string parola = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
-            await userStore.SetPasswordHashAsync(kullanici, userManager.PasswordHasher.HashPassword(parola));
-            await userStore.UpdateAsync(kullanici);
-            await userStore.Context.SaveChangesAsync();
-            await SiteSettings.SendMail(new MailModel
-            {
-                To = kullanici.Email,
-                Subject = "Yeni parolanız",
-                Message = $"Merhaba {kullanici.UserName},<br/>Yeni parolanız: <b>{parola}</b><br/><a href='{SiteUrl()}/hesap/giris'>Giriş Yap</a>"
-            });
-            return RedirectToAction("Index", "Ana");
-        }
         public string SiteUrl()
         {
             return Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host +

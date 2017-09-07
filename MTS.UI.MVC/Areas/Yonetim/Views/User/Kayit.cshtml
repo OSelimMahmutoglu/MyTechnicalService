@@ -1,0 +1,85 @@
+﻿
+@model RegisterViewModel
+@{
+    ViewBag.Title = "Kayit";
+    Layout = "~/Areas/Yonetim/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Add Expert</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="widget">
+                <div class="widget-body">
+                    <span class="text text-danger">@Html.ValidationSummary()</span>
+                    @using (Html.BeginForm("Kayit", "User", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>Name</label>
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                <span class="text text-danger">
+                                    @Html.ValidationMessageFor(x => x.Name)
+                                </span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Surname</label>
+                                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Surname)
+                            </div>
+                            <div class="form-group col-sm-6">
+                                @Html.LabelFor(x => x.Email)
+                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type = "email" })
+                                @Html.ValidationMessageFor(x => x.Email)
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>User Name</label>
+                                @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Username)
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Password</label>
+                                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password" })
+                                @Html.ValidationMessageFor(x => x.Password)
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Confirm Password</label>
+                                @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", type = "password" })
+                                @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Phone</label>
+                                @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", type = "tel" })
+                                @Html.ValidationMessageFor(x => x.Phone)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-secondary">
+                                        @Html.RadioButtonFor(x => x.OperatorMu, true) Operator
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        @Html.RadioButtonFor(x => x.OperatorMu, false) Technician
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p>
+                                    <input type="submit" class="btn theme-btn" value="Register" />
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <!-- end: Widget -->
+            </div>
+            <!-- /REGISTER -->
+        </div>
+        <!-- WHY? -->
+    </div>
+</div>

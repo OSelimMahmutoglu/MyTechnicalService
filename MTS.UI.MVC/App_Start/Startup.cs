@@ -9,7 +9,7 @@ namespace MTS.UI.MVC
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",

@@ -37,6 +37,6 @@ namespace MTS.Models.ViewModels
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
-        public bool FirmaMi { get; set; } = false;
+        public bool OperatorMu { get; set; } = false;
     }
 }
