@@ -61,10 +61,7 @@ namespace MTS.UI.MVC.Controllers
                 }
                 else
                 {
-                    if (model.FirmaMi)
-                        userManager.AddToRole(user.Id, "Firma");
-                    else
-                        userManager.AddToRole(user.Id, "Musteri");
+                    userManager.AddToRole(user.Id, "Musteri");
                 }
                 await SiteSettings.SendMail(new MailModel()
                 {
@@ -135,14 +132,14 @@ namespace MTS.UI.MVC.Controllers
                     IsPersistent = model.RememberMe
                 }, userIdentity);
             }
-            return RedirectToAction("Index", "Ana");
+            return RedirectToAction("Index", "Main");
         }
 
         [Authorize]
         public ActionResult Cikis()
         {
             HttpContext.GetOwinContext().Authentication.SignOut();
-            return RedirectToAction("Index", "Ana");
+            return RedirectToAction("Index", "Main");
         }
         [Authorize]
         public async Task<ActionResult> Profilim()
