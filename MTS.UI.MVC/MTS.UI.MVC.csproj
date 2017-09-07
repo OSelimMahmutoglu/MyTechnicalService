@@ -208,6 +208,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HTMLHelperExtentions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1624,7 +1625,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Yonetim\Views\web.config" />
+    <Content Include="Areas\Yonetim\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Yonetim\Content\bootstrap.css.map" />
     <Content Include="Areas\Yonetim\Content\bootstrap.min.css.map" />
     <Content Include="Areas\Yonetim\Content\plugins\bootstrap-rtl\bootstrap-rtl.css.map" />
@@ -1711,7 +1714,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Yonetim\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Yonetim\Views\Shared\_RightSidebar.cshtml" />
-    <Content Include="Areas\Yonetim\Views\Shared\_TopNavBar.cshtml" />
+    <Content Include="Areas\Yonetim\Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Areas\Yonetim\Views\Shared\_Navigation.cshtml" />
     <Content Include="Areas\Yonetim\Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Areas\Yonetim\Views\Main\Index.cshtml" />
