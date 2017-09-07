@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Settings\SiteSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MTS.DAL\MTS.DAL.csproj">
