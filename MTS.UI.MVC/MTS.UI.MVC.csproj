@@ -232,6 +232,7 @@
     <Compile Include="Areas\Yonetim\YonetimAreaRegistration.cs" />
     <Compile Include="Controllers\HesapController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MusteriController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2395,6 +2396,7 @@
     <Folder Include="Areas\Yonetim\Models\" />
     <Folder Include="bootstrap\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\Musteri\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
