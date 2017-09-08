@@ -15,29 +15,29 @@
                         @Html.AntiForgeryToken()
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.NameEmail)
+                                <label>Mail or Username</label>
                                 @Html.TextBoxFor(x => x.NameEmail, new { @class = "form-control" })
                                 <span class="text text-danger">
                                     @Html.ValidationMessageFor(x => x.NameEmail)
                                 </span>
                             </div>
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.Password)
+                                <label>Password</label>
                                 @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password" })
                                 @Html.ValidationMessageFor(x => x.Password)
                             </div>
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.RememberMe)
+                                <label>Remember Me</label>
                                 @Html.CheckBoxFor(x => x.RememberMe)
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
                                 <p>
-                                    <input type="submit" class="btn theme-btn" value="Giriş Yap" />
+                                    <input type="submit" class="btn theme-btn" value="Sign in" />
                                 </p>
                                 <p>
-                                    <a href="@Url.Action("SifremiUnuttum","User")" class="btn theme-btn">Şifremi Unuttum</a>
+                                    <a href="@Url.Action("SifremiUnuttum","User")" class="btn theme-btn">Forgot my Password</a>
                                 </p>
                             </div>
                         </div>

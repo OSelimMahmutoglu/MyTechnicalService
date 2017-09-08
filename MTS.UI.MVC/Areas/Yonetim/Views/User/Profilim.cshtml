@@ -3,14 +3,14 @@
 
 @model ProfileViewModel
 @{
-    ViewBag.Title = $"{Model.Username} - Profil Sayfam";
+    ViewBag.Title = $"{Model.Username} - My Profile";
     Layout = "~/Areas/Yonetim/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.ContainerClass = "contact-page";
 }
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="widget">
                 <div class="widget-body">
                     <span class="text text-danger">@Html.ValidationSummary()</span>
@@ -19,25 +19,25 @@
                         @Html.AntiForgeryToken()
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.Name)
+                                <label>Name</label>
                                 @Html.TextBoxFor(x => x.Name, new { @class = "form-control", disabled = "disabled" })
                             </div>
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.Surname)
+                                <label>Surname</label>
                                 @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", disabled = "disabled" })
                             </div>
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.Email)
+                                <label>Email</label>
                                 @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type = "email" })
                                 @Html.ValidationMessageFor(x => x.Email)
                             </div>
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.Username)
+                                <label>Username</label>
                                 @Html.TextBoxFor(x => x.Username, new { @class = "form-control", disabled = "disabled" })
                                 @Html.ValidationMessageFor(x => x.Username)
                             </div>
                             <div class="form-group col-sm-6">
-                                @Html.LabelFor(x => x.Phone)
+                                <label>Phone</label>
                                 @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", type = "tel" })
                                 @Html.ValidationMessageFor(x => x.Phone)
                             </div>
@@ -45,40 +45,39 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <p>
-                                    <input type="submit" class="btn theme-btn" value="Profili Güncelle" />
+                                    <input type="submit" class="btn theme-btn" value="Update Profile" />
                                 </p>
                                 <p>
-                                    <a href="@Url.Action("TekrarAktivasyonGonder","User")" class="btn theme-btn">Aktivasyon kodunu tekrar yolla</a>
+                                    <a href="@Url.Action("TekrarAktivasyonGonder","User")" class="btn theme-btn">Resend activation code</a>
                                 </p>
                             </div>
                         </div>
                     }
-
                 </div>
                 <!-- end: Widget -->
             </div>
             <!-- /REGISTER -->
         </div>
         <!-- WHY? -->
-        <div class="col-md-4">
-            <h4>Şifre İşlemleri</h4>
+        <div class="col-md-6">
+            <h4>Password operation</h4>
             <span class="text text-danger">@Html.ValidationSummary()</span>
             @using (Html.BeginForm("SifreGuncelle", "User", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="row">
-                    <div class="form-group col-sm-12">
-                        @Html.LabelFor(x => x.OldPassword)
+                    <div class="form-group col-sm-8">
+                        <label>Old Password</label>
                         @Html.TextBoxFor(x => x.OldPassword, new { @class = "form-control", type = "password" })
                         @Html.ValidationMessageFor(x => x.OldPassword)
                     </div>
-                    <div class="form-group col-sm-12">
-                        @Html.LabelFor(x => x.Password)
+                    <div class="form-group col-sm-8">
+                        <label>New Password</label>
                         @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password" })
                         @Html.ValidationMessageFor(x => x.Password)
                     </div>
-                    <div class="form-group col-sm-12">
-                        @Html.LabelFor(x => x.ConfirmPassword)
+                    <div class="form-group col-sm-8">
+                        <label>Confirm Password</label>
                         @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", type = "password" })
                         @Html.ValidationMessageFor(x => x.ConfirmPassword)
                     </div>
@@ -86,11 +85,15 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <p>
-                            <input type="submit" class="btn theme-btn" value="Şifre Güncelle" />
+                            <input type="submit" class="btn theme-btn" value="Update Password" />
                         </p>
                     </div>
+                    
                 </div>
             }
+        </div>
+        <div class="col-md-4">
+            <a href="#">Welcome to administrator profile page. You can make a change upon your account in this page</a>
         </div>
     </div>
 </div>

@@ -180,6 +180,7 @@ namespace MTS.UI.MVC.Controllers
             await userStore.Context.SaveChangesAsync();
 
             return RedirectToAction("Profilim");
+
         }
 
         [Authorize]

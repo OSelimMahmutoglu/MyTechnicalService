@@ -28,7 +28,6 @@ namespace MTS.Models.Entities
         public DateTime ArizaKayitZamani { get; set; } = DateTime.Now;
         [Display(Name = "Arıza Giderildi Mi")]
         public bool ArizaGiderildiMi { get; set; }
-
         [ForeignKey("KullaniciId")]
         public virtual ApplicationUser Kullanici { get; set; }
         [ForeignKey("KategoriId")]

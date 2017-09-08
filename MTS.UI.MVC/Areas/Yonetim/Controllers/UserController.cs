@@ -14,6 +14,7 @@ using System.Web.Mvc;
 
 namespace MTS.UI.MVC.Areas.Yonetim.Controllers
 {
+    
     public class UserController : Controller
     {
         // GET: Yonetim/User
@@ -28,6 +29,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Kayit(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
@@ -78,7 +80,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
                     Message = $"Merhaba {user.UserName}, <br/>Sisteme başarıyla kaydoldunuz<br/>Hesabınızı aktifleştirmek için <a href='{SiteUrl()}/hesap/aktivasyon?code={actcode}'>Aktivasyon Kodu</a>"
                 });
 
-                return RedirectToAction("Giris", "Hesap");
+                return RedirectToAction("Index", "Main");
             }
             else
             {
@@ -95,6 +97,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Giris(LoginViewModel model)
         {
+            
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -116,14 +119,28 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
                 }
                 else
                 {
+                    
+                    if (!userManager.IsInRole(user.Id, "Admin"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Only Admins can reach this panel");
+                        return View(model);
+                        
+                    }
+                    else { login(user);}
+                    
                     //emaile göre giriş yaptı
-                    login(user);
+                    
                 }
             }
             else
             {
                 // kullanıcı adına göre giriş yaptı
-                login(user);
+                if (!userManager.IsInRole(user.Id, "Admin"))
+                {
+                    ModelState.AddModelError(string.Empty, "Only Admins can reach this panel");
+                    return View(model);
+                }
+                else { login(user); }
             }
 
             void login(ApplicationUser loginuser)
@@ -139,7 +156,10 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
             }
             return RedirectToAction("Index", "Main");
         }
-
+        public ActionResult SifremiUnuttum()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<ActionResult> SifremiUnuttum(string name)
         {
@@ -206,6 +226,29 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
             await userStore.Context.SaveChangesAsync();
 
             return RedirectToAction("Profilim");
+        }
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<ActionResult> SifreGuncelle(ProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View("Profilim", model);
+            var userStore = NewUserStore();
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            var user = userManager.FindById(HttpContext.User.Identity.GetUserId());
+
+            var checkUser = userManager.Find(user.UserName, model.OldPassword);
+            if (checkUser == null)
+            {
+                ModelState.AddModelError(string.Empty, "Mevcut şifreniz yanlış");
+                return View("Profilim", model);
+            }
+            await userStore.SetPasswordHashAsync(user, userManager.PasswordHasher.HashPassword(model.ConfirmPassword));
+            await userStore.UpdateAsync(user);
+            await userStore.Context.SaveChangesAsync();
+
+            return RedirectToAction("Cikis");
         }
 
         public string SiteUrl()
