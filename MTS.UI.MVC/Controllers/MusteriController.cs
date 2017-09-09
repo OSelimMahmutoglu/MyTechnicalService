@@ -26,7 +26,7 @@ namespace MTS.UI.MVC.Controllers
             new ArizaKayitRepo().Insert(model);
             return RedirectToAction("Index", "Main");
         }
-        
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using MTS.BLL.Settings;
 using MTS.Models.IdentityModels;
@@ -55,17 +56,8 @@ namespace MTS.UI.MVC.Controllers
             var sonuc = await userManager.CreateAsync(user, model.ConfirmPassword);
             if (sonuc.Succeeded)
             {
-                if (adminMi)
-                {
-                    userManager.AddToRole(user.Id, "Admin");
-                }
-                else
-                {
-                    if (model.OperatorMu)
-                        userManager.AddToRole(user.Id, "Operator");
-                    else
-                        userManager.AddToRole(user.Id, "Teknisyen");
-                }
+                userManager.AddToRole(user.Id, "Musteri");
+
                 await SiteSettings.SendMail(new MailModel()
                 {
                     To = user.Email,
