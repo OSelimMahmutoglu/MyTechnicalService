@@ -21,13 +21,15 @@ namespace MTS.UI.MVC.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult ArizaKayit(ArizaKayitViewModel model)
+       
+        public ActionResult ArizaKayitSayfasi(ArizaKayitViewModel model)
         {
             model.KullaniciId = HttpContext.User.Identity.GetUserId();
             new ArizaKayitRepo().Insert(model);
             return RedirectToAction("ArizaKayitSayfasi", "Musteri");
+
         }
-        
+
 
     }
 }
