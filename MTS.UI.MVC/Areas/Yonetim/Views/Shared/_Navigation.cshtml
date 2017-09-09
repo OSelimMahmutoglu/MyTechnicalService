@@ -38,11 +38,11 @@
                    
                 </ul>
             </li>               
-            <li class="@Html.IsSelected(controller: "Dashboards")">
-                    <a href="@Url.Action("Dashboard_1", "Dashboards")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Repair Operations</span> <span class="fa arrow"></span></a>
+            <li class="@Html.IsSelected(controller: "Admin")">
+                    <a href="@Url.Action("Index", "Admin")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Operations</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Dashboards", cssClass: "in")">
-                        <li class="@Html.IsSelected(action: "Dashboard_1")"><a href="@Url.Action("Dashboard_1", "Dashboards")">Pendings</a></li>
-                        <li class="@Html.IsSelected(action: "Dashboard_2")"><a href="@Url.Action("Dashboard_2", "Dashboards")">Completed</a></li>
+                        <li class="@Html.IsSelected(action: "Admin")"><a href="@Url.Action("Index", "Admin")">Active Opetations</a></li>
+                        <li class="@Html.IsSelected(action: "Admin")"><a href="@Url.Action("Index", "Admin")">Info</a></li>
 
                     </ul>
                 </li>
