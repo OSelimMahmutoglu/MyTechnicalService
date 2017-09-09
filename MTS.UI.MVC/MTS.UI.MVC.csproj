@@ -2390,13 +2390,13 @@
     <Content Include="Views\Hesap\Kayit.cshtml" />
     <Content Include="Views\Hesap\SifremiUnuttum.cshtml" />
     <Content Include="Views\Hesap\Profilim.cshtml" />
+    <Content Include="Views\Musteri\ArizaKayitSayfasi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Yonetim\Models\" />
     <Folder Include="bootstrap\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\Musteri\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

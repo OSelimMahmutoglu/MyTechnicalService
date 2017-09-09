@@ -15,7 +15,6 @@ namespace MTS.Models.Entities
         [Key]
         public int Id { get; set; }
         [Display(Name = "Adres")]
-
         public string Adres { get; set; }
         public string KullaniciId { get; set; }
         public int KategoriId { get; set; }

@@ -15,8 +15,8 @@ namespace MTS.DAL
         public MyContext()
             : base("name=MyCon")
         {        }
-        public virtual DbSet<ArizaKaydiDetay> Firmalar { get; set; }
-        public virtual DbSet<ArizaKayit> Urunler { get; set; }
-        public virtual DbSet<Kategori> UrunKategoriler { get; set; }
+        public virtual DbSet<ArizaKaydiDetay> ArizaKayitDetaylari { get; set; }
+        public virtual DbSet<ArizaKayit> ArizaKayitlari { get; set; }
+        public virtual DbSet<Kategori> Kategoriler { get; set; }
     }
 }
