@@ -39,7 +39,29 @@ namespace MTS.UI.MVC.Controllers
             }));
             return kategoriler;
         }
+        public ActionResult ArizaKayitlariGoruntuleme()
+        {
+            List<ArizaKayitViewModel> model = new List<ArizaKayitViewModel>();
+            var arizakayitlarim = new ArizaKayitRepo().GetById(HttpContext.User.Identity.GetUserId());
+            foreach (var item in arizakayitlarim)
+            {
+                ArizaKayitViewModel yenikayit = new ArizaKayitViewModel()
+                {
+                    Aciklama = item.Aciklama,
+                    ArizaGiderildiMi = item.ArizaGiderildiMi,
+                    ArizaKayitZamani = item.ArizaKayitZamani,
+                    FotografYolu = item.FotografYolu,
+                    Konum = item.Konum,
+                    KategoriId = item.KategoriId,
+                    KullaniciId = item.KullaniciId
+                };
+                model.Add(yenikayit);
+            }
+            
+            return View(model);
+        }
 
+        
 
     }
 }
