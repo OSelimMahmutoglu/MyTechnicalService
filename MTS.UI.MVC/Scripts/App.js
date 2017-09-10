@@ -4,12 +4,12 @@
 var app = angular.module("admin", ['ngMaterial']);
 
 app.factory("api", function ($http, $location) {
-    var apiurl = "http://localhost:7723/Yonetim/";
+    var apiurl = "http://localhost:25747/Yonetim/";
     var baseUrl = $location.$$protocol + "://" + $location.$$host;
     if ($location.$$port)
         baseUrl += ":" + $location.$$port
-    //console.log($location);
-    //console.log(baseUrl);
+    console.log($location);
+    console.log(baseUrl);
     return {
         urunkategoriekle: function (model, success) {
             $http({
@@ -21,15 +21,15 @@ app.factory("api", function ($http, $location) {
                 success(response.data);
             });
         },
-        //urunkategorilerigetir: function (success) {
-        //    $http({
-        //        url: apiurl + 'Kategori/Getir',
-        //        method: 'GET',
-        //        dataType: 'JSON'
-        //    }).then(function (response) {
-        //        success(response.data);
-        //    });
-        //},
+        urunkategorilerigetir: function (success) {
+            $http({
+                url: apiurl + 'Kategori/Getir',
+                method: 'GET',
+                dataType: 'JSON'
+            }).then(function (response) {
+                success(response.data);
+            });
+        },
         urunkategoriguncelle: function (model, success) {
             $http({
                 url: apiurl + 'Kategori/Guncelle',
@@ -44,6 +44,16 @@ app.factory("api", function ($http, $location) {
             $http({
                 url: apiurl + 'Kategori/Sil/' + id,
                 method: 'POST',
+                dataType: 'JSON'
+            }).then(function (response) {
+                success(response.data);
+            });
+        },
+
+        arizalarigetir: function (success) {
+            $http({
+                url: apiurl + 'Ariza/Arizalar',
+                method: 'GET',
                 dataType: 'JSON'
             }).then(function (response) {
                 success(response.data);
@@ -112,6 +122,20 @@ app.controller("KategoriCtrl",
                     alert(data.message);
                     $scope.yukleniyor = false;
                 });
+        }
+        init();
+    });
+app.controller("ArizaCtrl",
+    function ($scope, api, $mdDialog) {
+        $scope.yukleniyor = false;
+        $scope.ariza = {};
+        $scope.arizalar = [];
+        function init() {
+            $scope.yukleniyor = true;
+            api.arizalarigetir(function (data) {
+                $scope.arizalar = data;
+                $scope.yukleniyor = false;
+            });
         }
         init();
     });

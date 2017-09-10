@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="">
+<html ng-app="admin">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -9,8 +9,10 @@
     <title>My Technical Service | @ViewBag.Title</title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
     <link href="~/Content/angular-material.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
     {@RenderSection("Styles", required: false)}
@@ -60,7 +62,7 @@
     <!-- Skin config script - only for demo purpose-->
     @Scripts.Render("~/Areas/Yonetim/bundles/skinConfig")
 
-    
+
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
     <script src="~/Scripts/angular-aria.js"></script>

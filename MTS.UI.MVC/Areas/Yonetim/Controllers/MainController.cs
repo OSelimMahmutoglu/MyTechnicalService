@@ -17,11 +17,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
             return View();
         }
 
-        public ActionResult Arizalar()
-        {
-
-            return View();
-        }
+    
 
     }
 }
