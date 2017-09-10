@@ -12,6 +12,7 @@ namespace MTS.BLL.Repository
     public class ArizaKaydiDetayRepo : RepositoryBase<ArizaKaydiDetay, int> { }
     public class ArizaKayitRepo : RepositoryBase<ArizaKayit, int>
     {
+        public List<ArizaKayit> GetById(string Id) => GetAll().Where(x => x.KullaniciId == Id).ToList();
         public int Insert(ArizaKayitViewModel model)
         {
             MyContext db = new MyContext();
