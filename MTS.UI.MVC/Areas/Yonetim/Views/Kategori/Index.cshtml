@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Areas/Yonetim/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div ng-app="admin" ng-controller="KategoriCtrl" ng-cloak>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Categories</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index","Main",new{Area="Yonetim"})">Ana Sayfa</a>
+                </li>
+                <li class="active">
+                    <strong>Category Administration</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content" id="maindiv">
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <md-progress-circular ng-show="yukleniyor" class="md-warn md-hue-3" md-diameter="96"></md-progress-circular>
+                    </div>
+                </div>
+                <div class="row" ng-show="!yukleniyor">
+                    <div class="col-md-6" ng-if="duzenlenecek==null">
+                        <form ng-submit="ekle()" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Category Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="kategori.KategoriAdi" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Description</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="kategori.Aciklama" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn btn-success btn-block">Save Category</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6" ng-if="duzenlenecek!=null">
+                        <form ng-submit="guncelle()" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Category Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="duzenlenecek.KategoriAdi" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Description</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="duzenlenecek.Aciklama" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="submit" class="btn btn-success btn-block">Update Category</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" ng-show="!yukleniyor">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kategori Adı</th>
+                                <th>Açıklama</th>
+                                <th>Düzenle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key,item) in kategoriler">
+                                <th scope="row">{{key+1}}</th>
+                                <td>{{item.KategoriAdi}}</td>
+                                <td>{{item.Aciklama}}</td>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-warning" value="Edit" ng-click="duzenle(item)" />
+                                    <input type="button" class="btn btn-block btn-danger" value="Erase" ng-click="sil(item.Id)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
