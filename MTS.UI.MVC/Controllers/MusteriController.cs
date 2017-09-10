@@ -17,6 +17,7 @@ namespace MTS.UI.MVC.Controllers
         [HttpGet]
         public ActionResult ArizaKayitSayfasi()
         {
+            ViewBag.Kategori = KategoriSelectList();
             return View();
         }
         [HttpPost]
@@ -25,6 +26,18 @@ namespace MTS.UI.MVC.Controllers
             model.KullaniciId = HttpContext.User.Identity.GetUserId();
             new ArizaKayitRepo().Insert(model);
             return RedirectToAction("Index", "Main");
+        }
+
+        private List<SelectListItem> KategoriSelectList()
+        {
+            List<SelectListItem> kategoriler = new List<SelectListItem>();
+            new KategoriRepo().GetAll().OrderBy(x => x.KategoriAdi).ToList().ForEach(x =>
+            kategoriler.Add(new SelectListItem()
+            {
+                Text = x.KategoriAdi,
+                Value = x.Id.ToString()
+            }));
+            return kategoriler;
         }
 
 

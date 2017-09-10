@@ -18,7 +18,7 @@ namespace MTS.Models.Entities
         public int ArizaKayitId { get; set; }
         public string OperatorId { get; set; }
         [Display(Name = "Operator İşlem Zamanı")]
-        public DateTime OperatorIslemZamani { get; set; }
+        public DateTime? OperatorIslemZamani { get; set; }
         public bool OperatorOnayladiMi { get; set; } = false;
         [Display(Name = "Operator Açıklaması")]
         public string OperatorAciklamasi { get; set; }
@@ -27,7 +27,7 @@ namespace MTS.Models.Entities
         public string TeknisyenRaporu { get; set; }
         public decimal? Fiyat { get; set; } 
         [Display(Name = "Bitiş Zamanı")]
-        public DateTime BitisZamani { get; set; }
+        public DateTime? BitisZamani { get; set; }
 
         [ForeignKey("ArizaKayitId")]
         public virtual ArizaKayit ArizaKayit { get; set; }

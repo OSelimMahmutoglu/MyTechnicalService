@@ -11,7 +11,7 @@
             <div class="widget">
                 <div class="widget-body">
                     <span class="text text-danger">@Html.ValidationSummary()</span>
-                    @using (Html.BeginForm("ArizaKayitSayfasi", "Musteri", FormMethod.Post))
+                    @using (Html.BeginForm("ArizaKayit","Musteri", FormMethod.Post))
                     {
 
                         <div class="row">
@@ -36,8 +36,8 @@
                             </ul>
                             
                             <div class="form-group col-sm-6">
-                                <label> Category </label>
-                                @Html.TextBoxFor(x => x.KategoriId, new { @class = "form-control" })
+                                <label>Kategori Adi</label>
+                                @Html.DropDownListFor(x => x.KategoriId, (List<SelectListItem>)ViewBag.Kategori, new { @class = "form-control" })
                             </div>
 
                         </div>
