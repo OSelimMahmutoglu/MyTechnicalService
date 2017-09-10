@@ -23,7 +23,8 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
                 KullaniciId = x.KullaniciId,
                 Aciklama = x.Aciklama,
                 Konum = x.Konum,
-                ArizaKayitZamani = x.ArizaKayitZamani
+                ArizaKayitZamani = x.ArizaKayitZamani,
+                KategoriId = x.KategoriId
             }).ToList();
             return Json(model, JsonRequestBehavior.AllowGet);
         }

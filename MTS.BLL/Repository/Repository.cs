@@ -22,6 +22,7 @@ namespace MTS.BLL.Repository
                 {
                     ArizaKayit yeniArizaKayit = new ArizaKayit()
                     {
+                        
                         Aciklama = model.Aciklama,
                         FotografYolu = model.FotografYolu,
                         KullaniciId = model.KullaniciId,

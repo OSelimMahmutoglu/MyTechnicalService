@@ -26,5 +26,4 @@ namespace MTS.Models.ViewModels
         [Display(Name = "Arıza Giderildi Mi")]
         public bool ArizaGiderildiMi { get; set; } = false;
     }
-
 }
