@@ -233,7 +233,7 @@ namespace MTS.UI.MVC.Controllers
                 Message = $"Merhaba {user.UserName}, <br/>Hesabınızı aktifleştirmek için <a href='{SiteUrl()}/hesap/aktivasyon?code={user.ActivationCode}'>Aktivasyon Kodu</a>"
             });
 
-            return RedirectToAction("Profilim");
+            return RedirectToAction("Profilim","Hesap");
         }
         public ActionResult SifremiUnuttum()
         {
@@ -262,7 +262,7 @@ namespace MTS.UI.MVC.Controllers
                 Subject = "Yeni parolanız",
                 Message = $"Merhaba {kullanici.UserName},<br/>Yeni parolanız: <b>{parola}</b><br/><a href='{SiteUrl()}/hesap/giris'>Giriş Yap</a>"
             });
-            return RedirectToAction("Index", "Ana");
+            return RedirectToAction("Index", "Main");
         }
         public string SiteUrl()
         {

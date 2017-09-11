@@ -160,6 +160,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> SifremiUnuttum(string name)
         {
@@ -191,6 +192,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
             return RedirectToAction("Index", "Main");
         }
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Profilim()
         {
             string id = HttpContext.User.Identity.GetUserId();
@@ -210,6 +212,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Profilim(ProfileViewModel model)
         {
             if (!ModelState.IsValid)
@@ -230,6 +233,7 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> SifreGuncelle(ProfileViewModel model)
         {
             if (!ModelState.IsValid)

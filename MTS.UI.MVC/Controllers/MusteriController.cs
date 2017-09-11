@@ -52,8 +52,8 @@ namespace MTS.UI.MVC.Controllers
                     ArizaKayitZamani = item.ArizaKayitZamani,
                     FotografYolu = item.FotografYolu,
                     Konum = item.Konum,
-                    KategoriId = item.KategoriId,
-                    KullaniciId = item.KullaniciId
+                    KullaniciId = item.KullaniciId,
+                     ArizaKayitNumarasi=item.Id
                 };
                 model.Add(yenikayit);
             }

@@ -1,9 +1,42 @@
-﻿
-@{
-    ViewBag.Title = "ArizaKayitlariGoruntuleme";
-    Layout = "~/Views/_LayoutPage.cshtml";
-}
+﻿List<ArizaKayitViewModel>
+    @{
+        ViewBag.Title = "ArizaKayitlariGoruntuleme";
+        Layout = "~/Views/_LayoutPage.cshtml";
+    }
 
-<h2>ArizaKayitlariGoruntuleme</h2>
-{{2+2}}
+    <h2>ArizaKayitlariGoruntuleme</h2>
+        <div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-md-8 col-sm-8 col-sm-8">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Arıza Kayıt Numarası</th>
+                                <th>Arıza Kayıt Zamanı</th>
+                                <th>Konum</th>
+                                <th>Açıklama</th>
+                                <th>Arıza Giderildi Mi?</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>@item.ArizaKayitNumarasi</th>
+                                    <td>@item.ArizaKayitZamani</td>
+                                    <td>@item.Konum</td>
+                                    <td>@item.Aciklama</td>
+                                    <td>@item.ArizaGiderildiMi</td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
 

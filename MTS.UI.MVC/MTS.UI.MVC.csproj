@@ -236,6 +236,7 @@
     <Compile Include="Controllers\HesapController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MusteriController.cs" />
+    <Compile Include="Controllers\OperatorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1914,6 +1915,7 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="contact.html" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />
     <Content Include="Content\angular-material.layout-attributes.min.css" />
@@ -3329,6 +3331,8 @@
     <Content Include="Views\Hesap\Profilim.cshtml" />
     <Content Include="Views\Musteri\ArizaKayitSayfasi.cshtml" />
     <Content Include="Views\Musteri\ArizaKayitlariGoruntuleme.cshtml" />
+    <Content Include="Views\Operator\OperatorArizaKayitlariGoruntuleme.cshtml" />
+    <Content Include="Views\Main\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

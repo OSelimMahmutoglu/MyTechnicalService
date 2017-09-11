@@ -29,10 +29,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Kullanıcı Id</th>
-                                        <th>Kategori Id</th>
-                                        <th>Konum</th>
-                                        <th>Açıklama</th>
+                                        <th>User Name</th>
+                                        <th>Category Name</th>
+                                        <th>Location</th>
+                                        <th>Description</th>
                                         
 
                                     </tr>
@@ -40,11 +40,10 @@
                                 <tbody>
                                     <tr ng-repeat="(key,item) in arizalar">
                                         <th scope="row">{{key+1}}</th>
-                                        <td>{{item.KullaniciId}}</td>
-                                        <td>{{item.KategoriId}}</td>
+                                        <td>{{item.KullaniciAdi}}</td>
+                                        <td>{{item.KategoriAdi}}</td>
                                         <td>{{item.Konum}}</td>
                                         <td>{{item.Aciklama}}</td>
-
                                     </tr>
                                 </tbody>
                             </table>

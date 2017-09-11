@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MTS.UI.MVC.Areas.Yonetim.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class KategoriController : Controller
     {
         // GET: Yonetim/Kategori

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 namespace MTS.UI.MVC.Areas.Yonetim.Controllers
 {
+    
     public class MainController : Controller
     {
         // GET: Yonetim/Main

@@ -13,5 +13,9 @@ namespace MTS.UI.MVC.Controllers
         {
             return View();
         }
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

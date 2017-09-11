@@ -13,6 +13,10 @@ namespace MTS.Models.ViewModels
     public class ArizaKayitViewModel
     {
         public string KullaniciId { get; set; }
+        public string KategoriAdi { get; set; }
+        public string KullaniciAdi { get; set; }
+
+        public int ArizaKayitNumarasi { get; set; }
         public int KategoriId { get; set; }
         [Display(Name = "Telefon Numarası")]
         [DataType(DataType.PhoneNumber)]

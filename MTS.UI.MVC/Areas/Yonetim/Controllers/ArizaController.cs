@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MTS.UI.MVC.Areas.Yonetim.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ArizaController : Controller
     {
         // GET: Yonetim/Ariza
@@ -24,7 +25,9 @@ namespace MTS.UI.MVC.Areas.Yonetim.Controllers
                 Aciklama = x.Aciklama,
                 Konum = x.Konum,
                 ArizaKayitZamani = x.ArizaKayitZamani,
-                KategoriId = x.KategoriId
+                KategoriId = x.KategoriId,
+                KategoriAdi=x.Kategori.KategoriAdi,
+                KullaniciAdi=x.Kullanici.UserName
             }).ToList();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
